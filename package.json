@@ -1,0 +1,12 @@
+{
+  "name": "jproc",
+  "version": "0.0.1",
+  "description": "JSON Processor written in javascript with nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "author": "mainak55512",
+  "license": "ISC"
+}
