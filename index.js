@@ -1,5 +1,3 @@
-//ppu batters where id='0001' and name='Cake' or name='Mainak' or name='ServiceNow'
-
 function jproc(file, query) {
     var file_location = "./" + file;
     data = require(file_location);
