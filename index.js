@@ -15,15 +15,10 @@ function queryParser(data, query) {
             if (e[0] === "(") {
                 return "(this.obj." + e.toString().substring(1, e.length);
             }
-            else if (e[e.length - 1] === ")") {
-                return "this.obj." + e.toString();
-            }
             return "this.obj." + e.toString();
         }
-        else if (e === '&&') {
-            return '&&';
-        } else {
-            return '||';
+        else if (e === '&&' || e === '||') {
+            return e;
         }
     }).join(" ").toString();
 
@@ -52,6 +47,6 @@ function queryParser(data, query) {
 }
 
 
-var query = "id name language where language='Sindhi' or language='Galician'";
+var query = "id name language version where (language='Sindhi' or language='Galician') and version<4";
 
 jproc("test.json", query)
