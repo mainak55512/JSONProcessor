@@ -8,5 +8,6 @@
     "dev": "node index.js"
   },
   "author": "mainak55512",
+  "type": "module",
   "license": "ISC"
 }
