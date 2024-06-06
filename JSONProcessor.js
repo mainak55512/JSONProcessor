@@ -10,7 +10,6 @@ export default class Jproc {
 
         var resultArr = [];
         this.data.forEach(function(obj) {
-            //var result = Function(queryStr)();
             var result = eval_query(obj, queryStr);
             if (result) {
                 var resultObj = {};
@@ -22,6 +21,5 @@ export default class Jproc {
         });
         return resultArr;
     }
+
 }
-
-
