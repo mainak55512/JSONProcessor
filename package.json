@@ -1,12 +1,21 @@
 {
   "name": "jproc",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "JSON Processor written in javascript with nodejs",
   "main": "JSONProcessor.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node index.js"
   },
+  "keywords":[
+    'json',
+    'query',
+    'javascript',
+    'jproc',
+    'JSONProcessor',
+    'json-query-tool',
+    'json query'
+  ],
   "author": "mainak55512",
   "type": "module",
   "license": "ISC"
