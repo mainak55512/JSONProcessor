@@ -8,13 +8,13 @@
     "dev": "node index.js"
   },
   "keywords":[
-    'json',
-    'query',
-    'javascript',
-    'jproc',
-    'JSONProcessor',
-    'json-query-tool',
-    'json query'
+    "json",
+    "query",
+    "javascript",
+    "jproc",
+    "JSONProcessor",
+    "json-query-tool",
+    "json query"
   ],
   "author": "mainak55512",
   "type": "module",
