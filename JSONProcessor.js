@@ -1,4 +1,5 @@
 import eval_query from "./lib/interpreter.js"
+import { getValueFromObj, getLastKey } from "./lib/utils.js";
 
 export default class Jproc {
     constructor(data) {
@@ -14,7 +15,7 @@ export default class Jproc {
             if (result) {
                 var resultObj = {};
                 for (var i = 0; i < parms.length; i++) {
-                    resultObj[parms[i]] = obj[parms[i]];
+                    resultObj[getLastKey(parms[i])] = getValueFromObj(obj, parms[i]);
                 }
                 resultArr.push(resultObj);
             }
