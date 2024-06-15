@@ -15,6 +15,11 @@ npm i jproc
 
 
 ## Example usage 1:
+
+Jproc uses 'where' like query structure, where in the left hand side of the 'where' clause you will define the field names that 
+you want to be included in the output array and on the right hand side you will define the actual query.
+You need to use '.' to access the subfields.
+
 ```javascript
 
 import Jproc from "jproc";
@@ -91,6 +96,9 @@ console.log(queryObj.queryParser(query_str));
 ```
 
 ## Example usage 2:
+
+You can omit the 'where' part as well, in that case just provide the query and it will return that result array.
+
 ```javascript
 
 import Jproc from "jproc";
