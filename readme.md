@@ -72,7 +72,7 @@ console.log(queryObj.queryParser(query_str));
 
 ## Output
 
-```
+```json
 [
   {
     name: 'name_2',
