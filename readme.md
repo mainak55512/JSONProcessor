@@ -16,44 +16,6 @@ npm i jproc
 
 ## Example usage 1:
 ```javascript
-import Jproc from 'jproc';
-
-let data = [
-    {
-        "name": "name_1",
-        "place": "place_1",
-        "age": 18,
-    },
-    {
-        "name": "name_2",
-        "place": "place_2",
-        "age": 25,
-    },
-    {
-        "name": "name_3",
-        "place": "place_1",
-        "age": 5,
-    },
-    {
-        "name": "name_4",
-        "place": "place_3",
-        "age": 10,
-    },
-    ...
-];
-
-let filtered = new Jproc(data);
-console.log(filtered.queryParser("name where age >= 18 && ( place = 'place_1' || place = 'place_3' )"));
-```
-
-## Output
-
-```json
-[ { name: 'name_1' } ]
-```
-
-## Example usage 2:
-```javascript
 
 import Jproc from "jproc";
 
@@ -100,12 +62,12 @@ let queryObj = new Jproc(data);
 
 let query_str = "name details.id details.company details.location where (age >= 20 || (age > 18 && details.company = 'xyz')) && (details.location = 'London' || details.location = 'New York')";
 
-console.log(queryObj.queryParser(quwry_str));
-
+console.log(queryObj.queryParser(query_str));
 ```
 
 ## Output
-```json
+
+```
 [
   {
     name: 'name_2',
@@ -124,6 +86,94 @@ console.log(queryObj.queryParser(quwry_str));
     id: 'wuwcuwey652362',
     company: 'pqr',
     location: 'New York'
+  }
+]
+```
+
+## Example usage 2:
+```javascript
+
+import Jproc from "jproc";
+
+let data = [
+    {
+        name: 'name_1',
+        age: 18,
+        details: {
+            id: 'hvnakds2342349',
+            location: 'London',
+            company: "xyz",
+            keywords: ['test1', 'test2', 'test3'],
+        }
+    },
+    {
+        name: 'name_2',
+        age: 20,
+        details: {
+            id: 'iuefibe8362873287',
+            location: 'London',
+            company: "abc",
+            keywords: ['test1', 'test2', 'test3'],
+        }
+    },
+    {
+        name: 'name_3',
+        age: 19,
+        details: {
+            id: 'iwhiuvwi766579',
+            location: 'New York',
+            company: "xyz",
+            keywords: ['test1', 'test2', 'test3'],
+        }
+    },
+    {
+        name: 'name_4',
+        age: 25,
+        details: {
+            id: 'wuwcuwey652362',
+            location: 'Iraq',
+            company: "pqr",
+            keywords: ['test1', 'test2', 'test3'],
+        }
+    }
+]
+
+let queryObj = new Jproc(data);
+let query_str = "(age >= 20 || (age > 18 && details.company = 'xyz')) && (details.location = 'London' || details.location = 'New York')";
+console.log(JSON.stringify(queryObj.queryParser(query_str)));
+
+```
+
+## Output
+```json
+[
+  {
+    "name": "name_2",
+    "age": 20,
+    "details": {
+      "id": "iuefibe8362873287",
+      "location": "London",
+      "company": "abc",
+      "keywords": [
+        "test1",
+        "test2",
+        "test3"
+      ]
+    }
+  },
+  {
+    "name": "name_3",
+    "age": 19,
+    "details": {
+      "id": "iwhiuvwi766579",
+      "location": "New York",
+      "company": "xyz",
+      "keywords": [
+        "test1",
+        "test2",
+        "test3"
+      ]
+    }
   }
 ]
 ```
