@@ -75,22 +75,22 @@ console.log(queryObj.queryParser(query_str));
 ```json
 [
   {
-    "name": 'name_2',
-    "id": 'iuefibe8362873287',
-    "company": 'abc',
-    "location": 'London'
+    "name": "name_2",
+    "id": "iuefibe8362873287",
+    "company": "abc",
+    "location": "London"
   },
   {
-    "name": 'name_3',
-    "id": 'iwhiuvwi766579',
-    "company": 'xyz',
-    "location": 'New York'
+    "name": "name_3",
+    "id": "iwhiuvwi766579",
+    "company": "xyz",
+    "location": "New York"
   },
   {
-    "name": 'name_4',
-    "id": 'wuwcuwey652362',
-    "company": 'pqr',
-    "location": 'New York'
+    "name": "name_4",
+    "id": "wuwcuwey652362",
+    "company": "pqr",
+    "location": "New York"
   }
 ]
 ```
