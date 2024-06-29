@@ -1,20 +1,3 @@
-# Jproc
-
-Jproc is a light-weight simple json array query tool written in JavaScript.
-
-
-## Installation
-
-```
-npm install jproc
-```
-or,
-```
-npm i jproc
-```
-## Sample data.json
-
-```json
 [
     {
         "name": "name_1",
@@ -73,44 +56,3 @@ npm i jproc
         }
     }
 ]
-
-```
-
-## Example usage:
-
-```javascript
-import Jproc from "jproc";
-import fs from "fs";
-
-let data = JSON.parse(fs.readFileSync("./data.json"));
-
-
-// Initialize Jproc object with json data.
-let jObj = new Jproc(data);
-
-// Optionally you can set which parameters you want in the resultant array form the original json object.
-jObj.neededParams(["name", "details.id"]);
-
-// Set query for the jproc object, if no query is set using setQuery() method, then it will return resultant array 
-// with the fields specified by neededParams() method. If no parameter or query specified, then it will throw error.
-jObj.setQuery("(age >= 20 || (age > 18 && details.company = 'xyz')) && (details.location = 'London' || details.location = 'New York')");
-
-// Finally call exec_query() method to execute the query.
-console.log(jObj.exec_query());
-
-```
-
-## Output
-
-```json
-[
-    {
-        "name": "name_2",
-        "id": "iuefibe8362873287"
-    },
-    {
-        "name": "name_3",
-        "id": "iwhiuvwi766579"
-    }
-]
-```

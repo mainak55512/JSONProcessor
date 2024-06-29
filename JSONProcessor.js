@@ -17,10 +17,27 @@ export default class Jproc {
             this.query = query;
         }
     }
-    queryParser() {
+    exec_query() {
         var resultArr = [];
-        if (!this.query.length) {
-            throw "Query statement not found";
+        if (!this.query.length && !this.paramArr.length) {
+            throw new Error("No query or parameter found");
+        } else if (!this.query.length) {
+            let parms = this.paramArr;
+            this.data.forEach(function(obj) {
+                var resultObj = {};
+                for (var i = 0; i < parms.length; i++) {
+                    resultObj[getLastKey(parms[i])] = getValueFromObj(obj, parms[i]);
+                }
+                resultArr.push(resultObj);
+            });
+        } else if (!this.paramArr.length) {
+            let queryStr = this.query;
+            this.data.forEach(function(obj) {
+                let result = eval_query(obj, queryStr);
+                if (result) {
+                    resultArr.push(obj);
+                }
+            });
         } else {
             let queryStr = this.query;
             let parms = this.paramArr;
@@ -28,20 +45,14 @@ export default class Jproc {
             this.data.forEach(function(obj) {
                 let result = eval_query(obj, queryStr);
                 if (result) {
-                    if (parms.length) {
-                        var resultObj = {};
-                        for (var i = 0; i < parms.length; i++) {
-                            resultObj[getLastKey(parms[i])] = getValueFromObj(obj, parms[i]);
-                        }
-                        resultArr.push(resultObj);
-                    } else {
-                        resultArr.push(obj);
+                    var resultObj = {};
+                    for (var i = 0; i < parms.length; i++) {
+                        resultObj[getLastKey(parms[i])] = getValueFromObj(obj, parms[i]);
                     }
+                    resultArr.push(resultObj);
                 }
             });
         }
-
         return resultArr;
     }
-
 }
