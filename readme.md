@@ -88,6 +88,9 @@ let data = JSON.parse(fs.readFileSync("./data.json"));
 // Initialize Jproc object with json data.
 let jObj = new Jproc(data);
 
+
+//------------------------------------ Example 1 ----------------------------------------
+
 // Optionally you can set which parameters you want in the resultant array form the original json object.
 jObj.neededParams(["name", "details.id"]);
 
@@ -96,21 +99,121 @@ jObj.neededParams(["name", "details.id"]);
 jObj.setQuery("(age >= 20 || (age > 18 && details.company = 'xyz')) && (details.location = 'London' || details.location = 'New York')");
 
 // Finally call exec_query() method to execute the query.
-console.log(jObj.exec_query());
+console.log(JSON.stringify(jObj.exec_query()));
 
-```
-
-## Output
-
-```json
+/*
+ It matches the condition and returns the fields specified in the neededParams() method called before.
+ output:
+ --------
 [
-    {
-        "name": "name_2",
-        "id": "iuefibe8362873287"
-    },
-    {
-        "name": "name_3",
-        "id": "iwhiuvwi766579"
-    }
+  {
+    "name": "name_2",
+    "id": "iuefibe8362873287"
+  },
+  {
+    "name": "name_3",
+    "id": "iwhiuvwi766579"
+  }
 ]
+*/
+// ----------------------------------- End of Example 1 -------------------------------------
+
+
+// -------------------------------------- Example 2 -----------------------------------------
+
+// use clearParams() method to clear the parameters set by the neededParams() method.
+jObj.clearParams();
+
+console.log(JSON.stringify(jObj.exec_query()));
+
+/*
+ It will match the condition and return all the fields form the json object as we have cleared the parameters set for the jproc object.
+ Output:
+ -------
+ [
+  {
+    "name": "name_2",
+    "age": 20,
+    "details": {
+      "id": "iuefibe8362873287",
+      "location": "London",
+      "company": "abc",
+      "keywords": [
+	"test1",
+	"test2",
+	"test3"
+      ]
+    }
+  },
+  {
+    "name": "name_3",
+    "age": 19,
+    "details": {
+      "id": "iwhiuvwi766579",
+      "location": "New York",
+      "company": "xyz",
+      "keywords": [
+	"test1",
+	"test2",
+	"test3"
+      ]
+    }
+  }
+]
+*/
+// ------------------------------- End of Example 2 ---------------------------------
+
+
+// ------------------------------- Example 3 ----------------------------------------
+
+jObj.neededParams(["name", "details.id", "details.location"]);
+
+// Use clearQuery() method to clear existing query for the jproc object.
+jObj.clearQuery();
+
+console.log(JSON.stringify(jObj.exec_query()));
+
+/*
+ It doesn't match the condition as we have cleared the query and returns the fields form all the json elements for the array
+ that are specified in the neededParams() method before.
+Output:
+-------
+[
+  {
+    "name": "name_1",
+    "id": "hvnakds2342349",
+    "location": "London"
+  },
+  {
+    "name": "name_2",
+    "id": "iuefibe8362873287",
+    "location": "London"
+  },
+  {
+    "name": "name_3",
+    "id": "iwhiuvwi766579",
+    "location": "New York"
+  },
+  {
+    "name": "name_4",
+    "id": "wuwcuwey652362",
+    "location": "Iraq"
+  }
+]
+*/
+// ------------------------------ End of Example 3 ---------------------------------
+
+
+// ------------------------------ Example 4 ----------------------------------------
+
+jObj.clearQuery();
+jObj.clearParams();
+
+console.log(JSON.stringify(jObj.exec_query()));
+
+/*
+This will throw error as we have cleared both parameters and query.
+*/
+// ------------------------------ End of Example 4 ---------------------------------
+
 ```

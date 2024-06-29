@@ -17,6 +17,12 @@ export default class Jproc {
             this.query = query;
         }
     }
+    clearParams() {
+        this.paramArr = [];
+    }
+    clearQuery() {
+        this.query = "";
+    }
     exec_query() {
         var resultArr = [];
         if (!this.query.length && !this.paramArr.length) {
