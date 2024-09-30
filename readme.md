@@ -12,6 +12,11 @@ or,
 ```
 npm i jproc
 ```
+
+## New jproc CLI is now available
+
+Try out new 'jproc' cli tool available in [releases](https://github.com/mainak55512/JSONProcessor/releases)
+Check out [usage](#Jproc-cli-usage) section for more details
 ## Sample data.json
 
 ```json
@@ -216,4 +221,52 @@ This will throw error as we have cleared both parameters and query.
 */
 // ------------------------------ End of Example 4 ---------------------------------
 
+```
+
+## Jproc-cli-usage
+
+Jproc cli can read from a file using `--file` flag
+```bash
+jproc --file="test.json" --query="(age >= 20 || (age > 18 && details.company = 'xyz')) && (details.location = 'London' || details.location = 'New Yo
+rk')"
+```
+Output:
+```bash
+[
+  {
+    name: 'name_2',
+    age: 20,
+    details: {
+      id: 'iuefibe8362873287',
+      location: 'London',
+      company: 'abc',
+      keywords: [Array]
+    }
+  },
+  {
+    name: 'name_3',
+    age: 19,
+    details: {
+      id: 'iwhiuvwi766579',
+      location: 'New York',
+      company: 'xyz',
+      keywords: [Array]
+    }
+  }
+]
+```
+
+Alternatively, json outputs from other applications can be piped to jproc
+```bash
+stto --json redis | jproc --params="ext","code","file_count" --query="line_count > 200 && file_count < 5"
+```
+
+Output:
+```bash
+[
+  { ext: 'markdown', code: 176, file_count: 1 },
+  { ext: 'm4', code: 669, file_count: 1 },
+  { ext: 'vcxproj.filters', code: 446, file_count: 4 },
+  { ext: 'vcxproj', code: 1412, file_count: 4 }
+]
 ```
