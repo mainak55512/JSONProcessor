@@ -15,8 +15,10 @@ npm i jproc
 
 ## New jproc CLI is now available
 
-Try out new 'jproc' cli tool available in [releases](https://github.com/mainak55512/JSONProcessor/releases)
-Check out [usage](#Jproc-cli-usage) section for more details
+🎉New 'jproc' cli released.🎉
+Try out new 'jproc' cli tool available in [releases](https://github.com/mainak55512/JSONProcessor/releases).
+
+Check out [Jproc-cli-usage](#Jproc-cli-usage) section for more details
 ## Sample data.json
 
 ```json
